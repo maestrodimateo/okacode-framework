@@ -1,0 +1,16 @@
+{
+    "name": "nonom/hometown-management",
+    "autoload": {
+        "psr-4": {
+            "HAKKI\\": ".",
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mebale Noel",
+            "email": "40523415+maestrodimateo@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
