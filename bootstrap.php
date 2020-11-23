@@ -2,8 +2,8 @@
 
 use App\Http\RequestHandler\Request;
 
-include_once 'config/database.php';
-include_once 'config/directories.php';
-include_once COMPOSER;
+require_once 'config/database.php';
+require_once 'config/directories.php';
+require_once COMPOSER;
 
 $request = new Request();
