@@ -1,6 +1,11 @@
 <?php
 namespace App\Http\RequestHandler;
 
+/**
+ * Classe permettant de gérer les requêtes.
+ * @author mebale noel <noelmeb12@gmail.com>
+ */
+
 class Request
 {
 
