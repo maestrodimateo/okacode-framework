@@ -5,7 +5,11 @@
     - Evite d'avoir deux routes identiques
     - Si la route correspondant à la requete n'existe pas, alors "not found"
 - Création de la structure de la route
-    - Récupère les paramètres
     - Dirige vers le bon contrôleur
     - Execute la bonne action
-    - 
+    - Compare le path de la requete au path de la route
+
+- Création de la requete
+    - Une requête un path. ex : 'path/to/resource'
+    - Une requête a une méthode. ex : "POST, GET, DELETE, PATCH, etc."
+    - Une requete a un corps si la méthode est de type "POST, PATCH, PUT, etc."
