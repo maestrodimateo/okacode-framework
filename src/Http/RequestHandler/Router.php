@@ -18,7 +18,7 @@ use App\ExceptionsHandler\NotFoundException;
 
 
     /**
-     * Enregistre une route de type get
+     * Déclare une route de type get
      *
      * @param string $path : la requete de l'utilisateur
      * @param mixed $callable : L'action à executer
@@ -30,7 +30,7 @@ use App\ExceptionsHandler\NotFoundException;
     }
 
     /**
-     * Enregistre une route de type post
+     * Déclare une route de type post
      *
      * @param string $path : la requete de l'utilisateur
      * @param string $callable : L'action à executer
@@ -56,7 +56,7 @@ use App\ExceptionsHandler\NotFoundException;
     }
 
     /**
-     * Verifie s'il y a des routes dupliquées
+     * Verifie s'il n'y a des routes dupliquées
      *
      * @param Route $currentRoute
      * @param string $method
