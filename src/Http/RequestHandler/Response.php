@@ -1,39 +1,30 @@
 <?php
 
+namespace App\Http\RequestHandler;
 
-class Response
+
+abstract class Response
 {
-    private $body;
-    private $statutCode = 200;
-    private $headers = [];
-
     /**
-     * Get the value of body
-     */ 
-    public function getBody()
-    {
-        return $this->body;
-    }
-
-    /**
-     * Set the value of body
+     * Fonction permettant de rendre la vue
      *
-     * @return  self
-     */ 
-    public function setBody($body)
+     * @param string $path : chemin vers la ressource
+     * @param mixed ...$params : Les différents paramètre
+     * @return void
+     */
+    public static function render(string $path, ...$params)
     {
-        $this->body = $body;
-
-        return $this;
+        return require_once VIEWS . $path . '.html';
     }
 
-    public function redirect()
+    /**
+     * Redirige vers la ressouce demandée
+     *
+     * @param string $path : le chemin de redirection
+     * @return void
+     */
+    public static function redirect(string $path)
     {
-
-    }
-
-    public function send($statutCode = 404)
-    {
-        
+        header("Location: $path");
     }
 }
