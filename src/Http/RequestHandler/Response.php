@@ -55,4 +55,15 @@ abstract class Response
     {
         header("Location: $path");
     }
+
+    /**
+     * Envoie d'une reponse Json
+     *
+     * @param array $data
+     * @return void
+     */
+    public function jsonResponse(array $data)
+    {
+
+    }
 }
