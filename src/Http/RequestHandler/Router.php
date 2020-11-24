@@ -34,7 +34,7 @@ use App\ExceptionsHandler\NotFoundException;
      *
      * @param string $path : la requete de l'utilisateur
      * @param string $callable : L'action à executer
-     * @return void
+     * @return self
      */
     public static function post(string $path, $callable)
     {
@@ -46,7 +46,7 @@ use App\ExceptionsHandler\NotFoundException;
      *
      * @param string $path
      * @param mixed $callable
-     * @return void
+     * @return self
      */
     private static function record_route(string $path, $callable, string $method = "GET")
     {

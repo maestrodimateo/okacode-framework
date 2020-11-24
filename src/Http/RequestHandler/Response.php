@@ -15,12 +15,34 @@ abstract class Response
      * @param mixed ...$params : Les différents paramètre
      * @return void
      */
-    public static function render(string $path, $params)
+    public static function render(string $path, array $params = [], string $layout = null)
+    {
+        http_response_code(self::$statutcode);
+
+        if ($layout === null) {
+            extract($params);
+            return require_once VIEWS . $path . '.html';
+        }
+
+        return self::withLayout($path, $params, $layout);
+    }
+
+    /**
+     * Retourne la vue avec son conteneur
+     *
+     * @param string $path
+     * @param array $params
+     * @param string $layout
+     * 
+     * @return void
+     */
+    public static function withLayout(string $path, array $params, string $layout)
     {
         extract($params);
-        http_response_code(self::$statutcode);
-        
-        return require_once VIEWS . $path . '.html';
+        ob_start();
+        require_once VIEWS . $path . '.html';
+        $content = ob_get_clean();
+        return require_once VIEWS . $layout .'.html';
     }
 
     /**

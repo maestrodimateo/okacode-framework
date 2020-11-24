@@ -1,15 +1,27 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Http\RequestHandler\Request;
 use App\Http\RequestHandler\Response;
 
-class HomeController
+class HomeController extends Controller
 {
+    /**
+     * Le layout du controller actuel
+     */
+    public string $layout = 'frontend/master';
+
+    /**
+     * Page d'accueil
+     *
+     * @return void
+     */
     public function index()
     {
         $name = "noel";
-        return Response::render('form', compact('name'));
+        return Response::render('frontend/form', compact('name'), $this->layout);
     }
 
     public function post(Request $request, int $id)
@@ -25,10 +37,11 @@ class HomeController
      */
     public function getData(Request $request)
     {
-        echo "<pre>";
-        var_dump($request->getBody());
-        echo "</pre>";
-
         return Response::redirect('/');
+    }
+
+    public function contact()
+    {
+        return Response::render('frontend/complete');
     }
 }

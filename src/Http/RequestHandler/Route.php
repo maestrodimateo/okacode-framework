@@ -102,8 +102,7 @@ class Route
     public function execute(Request $request)
     {
         if (is_string($this->action)) {
-            echo "page static";
-            return;
+            Response::render($this->action);
         }
 
         if (is_array($this->action)) {
