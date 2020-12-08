@@ -9,7 +9,7 @@
 - Paramétrer le qrcode avec le bon lien
 - Afficher les mairies
 - Afficher une mairie
-
+ 
 ## Compréhension du projet
 - L'application consiste à permettre à chaque agent de la mairie de s'enregistrer
     - Informations à recevoir
