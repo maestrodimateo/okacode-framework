@@ -2,29 +2,33 @@
 namespace App\Http\RequestHandler;
 
 /**
- * Classe permettant de gérer les requêtes.
+ * Class that handles all the requests
+ * 
  * @author mebale noel <noelmeb12@gmail.com>
  */
 
 class Request
 {
-
+    
     /**
      * La méthode la requete
      */
-    private string $method;
+    private string $_method;
 
 
     /**
      * L'eventuel corps de la requête
      */
-    private array $body = [];
+    private array $_body = [];
 
     /**
      * Le chemin de la requete envoyée
      */
-    private string $path = '/';
+    private string $_path = '/';
 
+    /**
+     * Constructor
+     */
     public function __construct()
     {
         $this->setMethod($_SERVER['REQUEST_METHOD']);
@@ -34,80 +38,65 @@ class Request
 
     /**
      * Get the value of body
+     * 
+     * @return array
      */ 
     public function getBody()
     {
-        return $this->body;
+        return $this->_body;
     }
 
     /**
      * Set the value of body
      *
-     * @return  self
+     * @return self
      */ 
     private function setBody($body)
     {
-        $this->body = $body;
+        $this->_body = $body;
 
         return $this;
     }
 
     /**
      * Get the value of method
+     * 
+     * @return string
      */ 
     public function getMethod()
     {
-        return $this->method;
+        return $this->_method;
     }
 
     /**
      * Set the value of method
      *
-     * @return  self
+     * @return self
      */ 
     private function setMethod($method)
     {
-        $this->method = $method;
-
+        $this->_method = $method;
         return $this;
     }
 
     /**
-     * Get le chemin de la requete envoyée
+     * Access to the request path
+     * 
+     * @return string
      */ 
     public function getPath()
     {
-        return $this->path;
+        return $this->_path;
     }
 
     /**
-     * Set le chemin de la requete envoyée
+     * Mutate the request path
      *
-     * @return  self
+     * @return self
      */ 
     private function setPath($path)
     {
-        $this->path = trim($path, '/');
-        return $this;
-    }
-
-    /**
-     * Get les parametres de la requete
-     */ 
-    public function getParams()
-    {
-        return $this->params;
-    }
-
-    /**
-     * Set les parametres de la requete
-     *
-     * @return  self
-     */ 
-    public function setParams($params)
-    {
-        $this->params = $params;
-
+        $this->_path = trim($path, '/');
         return $this;
     }
 }

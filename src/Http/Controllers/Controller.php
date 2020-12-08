@@ -3,5 +3,8 @@ namespace App\Http\Controllers;
 
 abstract class Controller
 {
-    protected string $layout;
+    /**
+     * Le layout du controller actuel
+     */
+    protected string $layout = 'frontend/master';
 }

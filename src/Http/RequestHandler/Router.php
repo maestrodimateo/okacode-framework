@@ -1,13 +1,16 @@
 <?php
 namespace App\Http\RequestHandler;
 use App\ExceptionsHandler\NotFoundException;
+
 /**
  * Rédirige la requete vers la bonne route
- * @author mebale noel <noelmeb12@gmail.com>
+ * 
  * @category Routing
+ * 
+ * @author mebale noel <noelmeb12@gmail.com>
  */
 
- abstract class Router
+abstract class Router
 {
     /**
      * Contient toutes les routes enregistrées
@@ -22,6 +25,7 @@ use App\ExceptionsHandler\NotFoundException;
      *
      * @param string $path : la requete de l'utilisateur
      * @param mixed $callable : L'action à executer
+     * 
      * @return void
      */
     public static function get(string $path, $callable)
@@ -34,11 +38,13 @@ use App\ExceptionsHandler\NotFoundException;
      *
      * @param string $path : la requete de l'utilisateur
      * @param string $callable : L'action à executer
+     * 
      * @return self
      */
     public static function post(string $path, $callable)
     {
         self::record_route($path, $callable, "POST");
+        return self::class;
     }
 
     /**
@@ -46,6 +52,7 @@ use App\ExceptionsHandler\NotFoundException;
      *
      * @param string $path
      * @param mixed $callable
+     * 
      * @return self
      */
     private static function record_route(string $path, $callable, string $method = "GET")
@@ -61,6 +68,7 @@ use App\ExceptionsHandler\NotFoundException;
      * @param Route $currentRoute
      * @param string $method
      * @param string $longPath
+     * 
      * @return Exception|null
      */
     public static function cheDuplicatedRoutes(Route $currentRoute, string $method, string $longPath)

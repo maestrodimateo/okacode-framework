@@ -4,8 +4,9 @@ namespace App\Http\RequestHandler;
 use App\Http\RequestHandler\Request;
 
 /**
+ * @category Routing
+ * 
  * @author mebale noel <noelmeb12@gmail.com>
- * @category routing
  */
 class Route 
 {
@@ -35,6 +36,7 @@ class Route
      * Recupere le chemin
      *
      * @param string $path
+     * 
      * @return self
      */
     private function setPath(string $path)
@@ -47,6 +49,7 @@ class Route
      * Récupere l'action à executer
      *
      * @param mixed $action
+     * 
      * @return self
      */
     private function setAction($action)
@@ -71,7 +74,7 @@ class Route
             return $this->$name;
         }
 
-        throw new Exception("La propriété [$name] n'existe pas dans [$this]", 1);
+        throw new \Exception("La propriété [$name] n'existe pas dans [$this]", 1);
         
     }
 

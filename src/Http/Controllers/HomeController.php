@@ -9,11 +9,6 @@ use App\Http\RequestHandler\Response;
 class HomeController extends Controller
 {
     /**
-     * Le layout du controller actuel
-     */
-    public string $layout = 'frontend/master';
-
-    /**
      * Page d'accueil
      *
      * @return void
@@ -30,9 +25,10 @@ class HomeController extends Controller
     }
 
     /**
-     * soumet le formulaire
+     * Soummet le formulaire
      *
      * @param Request $request
+     * 
      * @return void
      */
     public function getData(Request $request)
