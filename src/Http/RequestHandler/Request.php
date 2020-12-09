@@ -1,4 +1,4 @@
-<?php
+<?php 
 namespace App\Http\RequestHandler;
 
 /**
@@ -11,29 +11,31 @@ class Request
 {
     
     /**
-     * La méthode la requete
+     * The request method
      */
     private string $_method;
 
 
     /**
-     * L'eventuel corps de la requête
+     * The eventual request body
      */
     private array $_body = [];
 
     /**
-     * Le chemin de la requete envoyée
+     * The path of the sent request
      */
     private string $_path = '/';
 
     /**
      * Constructor
+     * 
+     * @return void
      */
     public function __construct()
     {
-        $this->setMethod($_SERVER['REQUEST_METHOD']);
-        $this->setBody($_POST);
-        $this->setPath($_SERVER['REQUEST_URI']);
+        $this->_setMethod($_SERVER['REQUEST_METHOD']);
+        $this->_setBody($_POST);
+        $this->_setPath($_SERVER['REQUEST_URI']);
     }
 
     /**
@@ -49,13 +51,17 @@ class Request
     /**
      * Set the value of body
      *
+     * @param array $body : The body of the request
+     * 
      * @return self
-     */ 
-    private function setBody($body)
+     */
+    private function _setBody(array $body)
     {
-        $this->_body = $body;
+        if (!$body) {
+            return null;
+        }
 
-        return $this;
+        $this->_body = $this->_sanitize($body);
     }
 
     /**
@@ -68,12 +74,15 @@ class Request
         return $this->_method;
     }
 
+
     /**
      * Set the value of method
      *
-     * @return self
-     */ 
-    private function setMethod($method)
+     * @param string $method : The method of the request
+     * 
+     * @return void
+     */
+    private function _setMethod($method)
     {
         $this->_method = $method;
         return $this;
@@ -92,11 +101,34 @@ class Request
     /**
      * Mutate the request path
      *
+     * @param string $path : The path of the request
+     * 
      * @return self
-     */ 
-    private function setPath($path)
+     */
+    private function _setPath(string $path)
     {
         $this->_path = trim($path, '/');
         return $this;
+    }
+
+    /**
+     * Sanitize data
+     *
+     * @param array $body : the data that need to be sanitize
+     * 
+     * @return array
+     */
+    private function _sanitize(array $body)
+    {
+        foreach ($body as $key => $data) {
+
+            $data = trim($data);
+            $data = htmlspecialchars($data);
+            $data = stripslashes($data);
+
+            $body[$key] = $data;
+        }
+
+        return $body;
     }
 }
