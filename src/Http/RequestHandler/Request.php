@@ -11,18 +11,18 @@ class Request
 {
     
     /**
-     * La méthode la requete
+     * The request method
      */
     private string $_method;
 
 
     /**
-     * L'eventuel corps de la requête
+     * The eventual request body
      */
     private array $_body = [];
 
     /**
-     * Le chemin de la requete envoyée
+     * The path of the sent request
      */
     private string $_path = '/';
 
@@ -31,8 +31,8 @@ class Request
      */
     public function __construct()
     {
-        $this->setMethod($_SERVER['REQUEST_METHOD']);
-        $this->setBody($_POST);
+        $this->_setMethod($_SERVER['REQUEST_METHOD']);
+        $this->_setBody($_POST);
         $this->setPath($_SERVER['REQUEST_URI']);
     }
 
@@ -51,7 +51,7 @@ class Request
      *
      * @return self
      */ 
-    private function setBody($body)
+    private function _setBody($body)
     {
         $this->_body = $body;
 
@@ -73,7 +73,7 @@ class Request
      *
      * @return self
      */ 
-    private function setMethod($method)
+    private function _setMethod($method)
     {
         $this->_method = $method;
         return $this;

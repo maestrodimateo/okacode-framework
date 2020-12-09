@@ -18,3 +18,7 @@
     - Une reponse a un corps (json, html, etc.);
     - une reponse a un statutCode
     - Une reponse a des headers
+
+- Création d'une sorte d'ORM
+    - Décomposer une requete SQL
+    
