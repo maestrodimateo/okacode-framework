@@ -6,7 +6,6 @@ use App\ExceptionsHandler\NotFoundException;
 
 require_once  __DIR__ . '/../bootstrap.php';
 
-
 Router::get('/', [HomeController::class, 'index']);
 Router::get('/contact', 'frontend/complete');
 

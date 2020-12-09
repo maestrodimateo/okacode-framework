@@ -12,7 +12,9 @@
             "email": "40523415+maestrodimateo@users.noreply.github.com"
         }
     ],
-    "require": {},
+    "require": {
+        "vlucas/phpdotenv": "^5.2"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.4"
     }
