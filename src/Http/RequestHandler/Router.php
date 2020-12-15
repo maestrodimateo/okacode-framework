@@ -1,30 +1,32 @@
 <?php
+
 namespace App\Http\RequestHandler;
+
 use App\ExceptionsHandler\NotFoundException;
 
 /**
- * Rédirige la requete vers la bonne route
+ * Redirect the request to the right route
  * 
  * @category Routing
  * 
- * @author mebale noel <noelmeb12@gmail.com>
+ * @author mebale noël <noelmeb12@gmail.com>
  */
 
 abstract class Router
 {
     /**
-     * Contient toutes les routes enregistrées
+     * Keep all the saved routes
      *
      * @var array
      */
-    private static $routes = ['GET' => [], 'PATCH' => [], 'POST' => []];
+    private static $_routes = ['GET' => [], 'PATCH' => [], 'POST' => []];
 
 
     /**
-     * Déclare une route de type get
+     * Declare a route of type GET
      *
-     * @param string $path : la requete de l'utilisateur
-     * @param mixed $callable : L'action à executer
+     * @param string $path     : The user request
+     * @param mixed  $callable : The action to execute
      * 
      * @return void
      */
@@ -34,10 +36,10 @@ abstract class Router
     }
 
     /**
-     * Déclare une route de type post
+     * Declare a route of type POST
      *
-     * @param string $path : la requete de l'utilisateur
-     * @param string $callable : L'action à executer
+     * @param string $path     : The user request
+     * @param mixed  $callable : The action to execute
      * 
      * @return self
      */
@@ -48,10 +50,11 @@ abstract class Router
     }
 
     /**
-     * Enregistre une route
+     * Save a route
      *
-     * @param string $path
-     * @param mixed $callable
+     * @param string $path     : The user request
+     * @param mixed  $callable : The action to execute
+     * @param string $method   : The method of the request
      * 
      * @return self
      */
@@ -59,21 +62,21 @@ abstract class Router
     {
         $route = new Route($path, $callable);
         self::cheDuplicatedRoutes($route, $method, $path);
-        self::$routes[$method][] = $route;
+        self::$_routes[$method][] = $route;
     }
 
     /**
-     * Verifie s'il n'y a des routes dupliquées
+     * Check if there is no duplicated routes
      *
-     * @param Route $currentRoute
-     * @param string $method
-     * @param string $longPath
+     * @param Route  $currentRoute : The route to check
+     * @param string $method       : The route's method 
+     * @param string $longPath     : The route's path
      * 
      * @return Exception|null
      */
     public static function cheDuplicatedRoutes(Route $currentRoute, string $method, string $longPath)
     {
-        foreach (self::$routes[$method] as $route) {
+        foreach (self::$_routes[$method] as $route) {
             if ($route->path === $currentRoute->path) {
                 throw new \Exception("La route [$longPath] de type [$method] existe déjà", 1);
             }
@@ -85,13 +88,13 @@ abstract class Router
     /**
      * Execute le chargement de la route demandée
      *
-     * @param Request $request
+     * @param Request $request : The user's request
      * 
      * @return void
      */
     public static function run(Request $request)
     {
-        foreach (self::$routes[$request->getMethod()] as $route) {
+        foreach (self::$_routes[$request->getMethod()] as $route) {
            
             if ($route->match($request->getPath())) {
                 return $route->execute($request);
