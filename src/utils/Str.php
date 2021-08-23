@@ -12,7 +12,7 @@ abstract class Str
     public static function setService($service, string $id) {
 
         if (!is_object($service)) {
-             throw new Exception("The parameter one must be an object", 1);
+             throw new \Exception("The parameter one must be an object", 1);
         }
 
         self::$_services[$id] = $service;

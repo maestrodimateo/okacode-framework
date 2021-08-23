@@ -1,28 +1,18 @@
 <?php
-
-use DI\Container;
-use App\utils\Str;
-use Doctrine\Inflector\InflectorFactory;
+use App\Http\RequestHandler\Request;
 
 /**
- * Configuration of the application
+ * container injection
  * 
  * @author mebale noel <noelmeb12@gmail.com>
  */
 
+
 return [
-
-    // Configuration of the database
-    'db.host' => env('DB_HOST', '127.0.0.1'),
-    'db.user' => env('DB_USER', 'root'),
-    'db.name' => env('DB_NAME', 'okacode'),
-    'db.password' => env('DB_PASSWORD', ''),
-
-    // class to inject
-    'inflector' => function () {
-        return InflectorFactory::create()->build();
-    },
-    'str' => function (Container $container) {
-        return Str::setService($container->get('inflector'), 'inflector');
-    }
+    
+    'db.name'     => \DI\env('DB_NAME', 'okacode'),
+    'db.username' => \DI\env('DB_USERNAME', 'root'),
+    'db.password' => \DI\env('DB_PASSWORD', 'root'),
+    'db.host'     => \DI\env('DB_HOST', 'localhost'),
+    Request::class => \DI\create()
 ];

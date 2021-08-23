@@ -1,20 +1,11 @@
 <?php
 
-use App\Http\RequestHandler\Request;
-use App\models\Person;
+require 'config/directories.php'; //Directory constants
 
-require_once 'config/directories.php';
-require_once COMPOSER;
+require COMPOSER; // Autoloader
 
-// container dependency injection
-$builder = new DI\ContainerBuilder();
-$builder->addDefinitions(__DIR__ . '/config/app.php');
-$container = $builder->build();
 
-// Loading dotenv
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$container->get('str');
-dd((new Person)->find(2));
-$request = $container->get(Request::class);
+$containerBuilder = new \DI\ContainerBuilder();
+$containerBuilder->useAutowiring(true);
+$containerBuilder->addDefinitions(CONFIG . 'app.php');
+$container = $containerBuilder->build();

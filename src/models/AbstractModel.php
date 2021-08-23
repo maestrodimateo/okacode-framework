@@ -18,6 +18,12 @@ abstract class AbstractModel
 
     protected ?PDO $pdo = null;
 
+    protected array $type_parameters = [
+        'string' => PDO::PARAM_STR,
+        'integer' => PDO::PARAM_INT,
+        'bool' => PDO::PARAM_BOOL,
+    ];
+
     /**
      * Constructor
      */
@@ -79,6 +85,29 @@ abstract class AbstractModel
     }
 
     /**
+     * Create a record in the database
+     *
+     * @param array $data : values of the new record
+     * 
+     * @return AbstractModel
+     */
+    public function create(array $data)
+    {
+        $attr = $this->_getStringyfiedAttributes($data);
+        $query = "INSERT INTO {$this->getTable()} ({$attr['names']}) VALUES ({$attr['placeholder']})";
+        $pdoStatement = $this->pdo->prepare($query);
+        
+        // Bind the parameters with the values
+        foreach ($data as $name => $value) {
+            $pdoStatement->bindParam(':' . $name, $value);
+        }
+
+        $pdoStatement->execute();
+
+        return $this->find($this->pdo->lastInsertId());
+    }
+
+    /**
      * Get a class table's name
      * 
      * @return string
@@ -93,4 +122,20 @@ abstract class AbstractModel
 
         return $this->table;
     }
+
+    /**
+     * Get the values and attributes
+     *
+     * @param array $data
+     * 
+     * @return array
+     */
+    private function _getStringyfiedAttributes(array $data):array
+    {
+        return [
+            'placeholder' => ':'. implode(', :', array_keys($data)),
+            'names' => implode(', ', array_keys($data)),
+        ];
+    }
+
 }

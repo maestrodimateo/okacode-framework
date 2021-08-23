@@ -11,3 +11,4 @@ define('ASSETS', BASE . 'public/assets/');
 define('VIEWS', BASE . 'src/views/');
 define('COMPOSER', BASE . "vendor/autoload.php");
 define('ROUTES', BASE . "routes/");
+define('CONFIG', BASE . "config/");

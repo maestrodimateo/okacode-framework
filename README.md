@@ -1,22 +1,23 @@
-# Application d'enregistrement des membres de la mairie
+## Choses à faire pour la création du framework
 
-## Fonctionnalités
-- Enregistrement des agents dans une mairie
-- Création des comptes utilisateurs
-- Génération de qrcode pendant l'enregistrement
-- Visualisation des informations de l'agent avec qrcode
-- Connexion/déconnexion
-- Paramétrer le qrcode avec le bon lien
-- Afficher les mairies
-- Afficher une mairie
- 
-## Compréhension du projet
-- L'application consiste à permettre à chaque agent de la mairie de s'enregistrer
-    - Informations à recevoir
-- Les différents rôles utilisateur
+- Création du routeur
+    - Rédiriger vers la bonne route ✔
+    - Evite  d'avoir deux routes identiques ✔
+    - Si la route correspondant à la requete n'existe pas, alors "not found" ✔
+- Création de la structure de la route
+    - Dirige vers le bon contrôleur ✔
+    - Execute la bonne action ✔
+    - Compare le path de la requete au path de la route ✔
 
-## Technologies à utiliser
-    - Php
-    - Template interface
-    - Javascript
-    - Mysql 
+- Création de la requete
+    - Une requête un path. ex : 'path/to/resource' ✔
+    - Une requête a une méthode. ex : "POST, GET, DELETE, PATCH, etc."
+    - Une requete a un corps si la méthode est de type "POST, PATCH, PUT, etc."
+
+- Création de la reponse
+    - Une reponse a un corps (json, html, etc.);
+    - une reponse a un statutCode
+    - Une reponse a des headers
+
+- Création d'une sorte d'ORM
+    - Décomposer une requete SQL
